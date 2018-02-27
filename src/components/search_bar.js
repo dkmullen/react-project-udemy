@@ -17,9 +17,8 @@ class SearchBar extends Component {
     return (
       <div>
         <input
-        value={this.state.term} // Has state set a default value.
-        onChange={event => this.setState({ term: event.target.value })} />
-        //Value of the input: {this.state.term}; // shows output of form
+          value={this.state.term} // Has state set a default value.
+          onChange={event => this.setState({ term: event.target.value })} />
       </div>
     );
   }

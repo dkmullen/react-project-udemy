@@ -6,12 +6,22 @@
 import React, { Component } from 'react';
 
 class SearchBar extends Component {
-  render() { // every class in React needs a render function
-    return <input onChange={this.onInputChange} />; // and render needs to return JSX
+  constructor(props) { // constructor always called when a new instance of class is made
+    super(props);  // calls properties of the parent class (Component)
+    // The following simply sets our state object to record the search term
+    // entered in our SearchBar; starts with '', changes with each entry
+    this.state = { term: '' };
   }
-
-  onInputChange(event) {
-    console.log(event);
+  render() { // every class in React needs a render function and render needs to return JSX
+    // Set the state (ie, change the value) with this.setState
+    return (
+      <div>
+        <input
+        value={this.state.term} // Has state set a default value.
+        onChange={event => this.setState({ term: event.target.value })} />
+        //Value of the input: {this.state.term}; // shows output of form
+      </div>
+    );
   }
 }
 
@@ -26,5 +36,14 @@ functional component, which should be used by default, unless there is a reason
 to escalate: const SearchBar = () => { return <input /> }
 
 onChange - change is a plain HTML event; All we have to do to access it in
-React is have on + the event, then {pointer to our method};
+React is have on + the event, then {pointer to our method}; Could be onClick,
+onMouseOver, etc.
 */
+
+// State - a plain JS object used to record, react to user events
+// Each class-based component has a state object
+// When component is changed, it re-renders, and also re-renders all its children
+
+// Functional components don't have state
+
+// JS inside JSX needs {} around it

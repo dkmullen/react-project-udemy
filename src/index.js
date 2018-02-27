@@ -15,8 +15,6 @@ const App = () => {
   );
 };
 
-
-
 ReactDOM.render(<App />, document.querySelector('.container'));
 
 // IN JSX, 'App' is a class, and <App /> is an instance of App. Hmmm

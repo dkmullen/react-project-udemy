@@ -1,5 +1,8 @@
 # ReduxSimpleStarter
 
+This is my rendition of a video app as part of a Udemy class by Stephen Grider. His text is below.
+
+---------------
 Interested in learning [Redux](https://www.udemy.com/react-redux/)?
 
 ### Getting Started

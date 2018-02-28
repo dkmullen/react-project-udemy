@@ -1,5 +1,6 @@
 /*jshint esversion: 6 */
 
+import _ from 'lodash';
 import React, { Component } from 'react'; // this library forms components
 import ReactDOM from 'react-dom'; // this library renders them
 import YTSearch from 'youtube-api-search';
@@ -19,7 +20,11 @@ class App extends Component {
       selectedVideo: null
     };
 
-    YTSearch({ key: API_KEY, term: 'Paul Lynde' }, (videos) => {
+    this.videoSearch('Paul Lynde');
+  }
+
+  videoSearch(term) {
+    YTSearch({ key: API_KEY, term: term }, (videos) => {
       this.setState({
         videos: videos,
         selectedVideo: videos[0]
@@ -30,9 +35,12 @@ class App extends Component {
 
 // below - passing props to VideoList
   render() {
+    // use lodash debounce to limit run of videoSearch to once per 300 ms
+    const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 300);
+
     return (
       <div>
-        <SearchBar />
+        <SearchBar onSearchTermChange={videoSearch}/>
         <VideoDetail video={this.state.selectedVideo} />
         <VideoList
           onVideoSelect={selectedVideo => this.setState({selectedVideo})}

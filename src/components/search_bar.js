@@ -15,12 +15,16 @@ class SearchBar extends Component {
   render() { // every class in React needs a render function and render needs to return JSX
     // Set the state (ie, change the value) with this.setState
     return (
-      <div>
+      <div className="search-bar">
         <input
           value={this.state.term} // Has state set a default value.
-          onChange={event => this.setState({ term: event.target.value })} />
+          onChange={event => this.onInputChange(event.target.value)} />
       </div>
     );
+  }
+  onInputChange(term) {
+    this.setState({term});
+    this.props.onSearchTermChange(term);
   }
 }
 
@@ -32,7 +36,7 @@ export default SearchBar;
 /*
 The above is a class-based component. A simplier and less-powerful way is the
 functional component, which should be used by default, unless there is a reason
-to escalate: const SearchBar = () => { return <input /> }
+to escalate: const SearchBar = () => { return <input /> } Use class when state is needed.
 
 onChange - change is a plain HTML event; All we have to do to access it in
 React is have on + the event, then {pointer to our method}; Could be onClick,
